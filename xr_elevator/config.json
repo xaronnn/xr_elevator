@@ -1,0 +1,64 @@
+{
+  "garage": {
+    "enabled": true,
+    "currentPosition": {"x": 286, "y": -342, "z": 44.24},
+    "currentFloor": 1,
+    "isBusy": false,
+    "radius": 15,
+    "elevator": {"hash": "xm_prop_iaa_base_elevator", "x": 286, "y": -342, "z": 44.24, "h": 5},
+    "floors": {
+      "1": {
+        "floor": {"z": 44.24, "radius": 2},
+        "doors": {
+          "left": {"hash": "", "x": 0.0, "y": 0.0, "z": 0.0},
+          "right": {"hash": "", "x": 0.0, "y": 0.0, "z": 0.0}
+        }
+      },
+      "2": {
+        "floor": {"z": 50, "radius": 2},
+        "doors": {
+          "left": {"hash": "", "x": 0.0, "y": 0.0, "z": 0.0},
+          "right": {"hash": "", "x": 0.0, "y": 0.0, "z": 0.0}
+        }
+      },
+      "3": {
+        "floor": {"z": 55, "radius": 2},
+        "doors": {
+          "left": {"hash": "", "x": 0.0, "y": 0.0, "z": 0.0},
+          "right": {"hash": "", "x": 0.0, "y": 0.0, "z": 0.0}
+        }
+      },
+      "4": {
+        "floor": {"z": 60, "radius": 2},
+        "doors": {
+          "left": {"hash": "", "x": 0.0, "y": 0.0, "z": 0.0},
+          "right": {"hash": "", "x": 0.0, "y": 0.0, "z": 0.0}
+        }
+      }
+    }
+  },
+  "motel": {
+    "enabled": true,
+    "currentPosition": {"x": 315, "y": -203, "z": 53.40},
+    "currentFloor": 1,
+    "isBusy": false,
+    "radius": 15,
+    "elevator": {"hash": "xm_prop_iaa_base_elevator", "x": 315, "y": -203, "z": 53.40, "h": 5},
+    "floors": {
+      "1": {
+        "floor": {"z": 53.40, "radius": 2},
+        "doors": {
+          "left": {"hash": "", "x": 0.0, "y": 0.0, "z": 0.0},
+          "right": {"hash": "", "x": 0.0, "y": 0.0, "z": 0.0}
+        }
+      },
+      "2": {
+        "floor": {"z": 60, "radius": 2},
+        "doors": {
+          "left": {"hash": "", "x": 0.0, "y": 0.0, "z": 0.0},
+          "right": {"hash": "", "x": 0.0, "y": 0.0, "z": 0.0}
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,43 @@
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    border: 0;
+    outline: 0;
+    box-sizing: border-box;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+html, body {
+    height: 100%
+}
+
+
+body {
+    font: 300 18px/1.6 "Source Sans Pro", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+
+
+
+#currentFloorsdsd {
+    margin: 0 auto;
+    background: #0a1d37;
+    color: #ffbd9b;
+    cursor: pointer;
+    font-size: 100px;
+    width: 2.7em;
+    height: 161px;
+    /*transition: all 0.5s;*/
+}

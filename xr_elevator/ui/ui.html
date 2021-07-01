@@ -1,0 +1,161 @@
+<!doctype html>
+<!--suppress ALL -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="ui.css" type="text/css">
+</head>
+<body>
+
+    <div id="elevatorUi">
+        <div id="currentFloor">NaN</div>
+    </div>
+
+    <div id="callUi">
+        <div id="callElevator">Call</div>
+    </div>
+
+    <div id="controlsUi">
+        <div id="calculator" class="calculator"></div>
+    </div>
+
+
+    <script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(() => {
+            let states = {
+                "currentFloorState": false,
+                "setUiDisplayState": false,
+                "setMaxFloorState": false,
+                "setCurrentStationState": false,
+                "setCallDisplayState": false
+            }
+            let maxFloor = false;
+            let currentStation = false;
+            const sendToClient = (event, data = false) => {
+                if(!event) return;
+                if(data) {
+                    $.post('https://elevator/'+event, JSON.stringify(data));
+                } else {
+                    $.post('https://elevator/'+event);
+                }
+
+            }
+            window.addEventListener("message", (e) => {
+                switch(e.data.type) {
+                    case "controls":
+                        if(!states["setControlsDisplayState"]) {
+                            states["setControlsDisplayState"] = true;
+                            setControlsDisplay(e.data.status)
+                            setTimeout(() => {
+                                states["setControlsDisplayState"] = false;
+                            }, 500);
+                        }
+                        break;
+                    case "ui":
+                        if(!states["setUiDisplayState"]) {
+                            states["setUiDisplayState"] = true
+                            setUiDisplay(e.data.status)
+                            setTimeout(() => {
+                                states["setUiDisplayState"] = false
+                            }, 500);
+                        }
+                        break;
+                    case "call":
+                        if(!states["setCallDisplayState"]) {
+                            states["setCallDisplayState"] = true;
+                            setCallDisplay(e.data.status)
+                            setTimeout(() => {
+                                states["setCallDisplayState"] = false;
+                            }, 500);
+                        }
+                        break;
+                    case "setCurrentFloor":
+                        if(!states["currentFloorState"]) {
+                            states["currentFloorState"] = true;
+                            setCurrentFloor(e.data.floor);
+                            setTimeout(() => {
+                                states["currentFloorState"] = false;
+                            }, 500);
+                        }
+                        break;
+                    case "setMaxFloor":
+                        if(!states["setMaxFloorState"]) {
+                            states["setMaxFloorState"] = true;
+                            setMaxFloor(e.data.max);
+                            setTimeout(() => {
+                                states["setMaxFloorState"] = false
+                            }, 500)
+                        }
+                        break;
+                    case "setCurrentStation":
+                        if(!states["setCurrentStationState"]) {
+                            states["setCurrentStationState"] = true;
+                            setCurrentStation(e.data.station);
+                            setTimeout(() => {
+                                states["setCurrentStationState"] = false
+                            }, 500)
+                        }
+                        break;
+                }
+            })
+            const log = (text) => {
+                console.log(text);
+            }
+            const setControlsDisplay = (show = true) => {
+                if(show) {
+                    $("#calculator").html('');
+                    for(let i = 1; i <= maxFloor; i++) {
+                        $("#calculator").prepend("<button class=\"num\" onclick=\"selectFloor("+i+")\">"+i+"</button>")
+                    }
+                    $("#controlsUi").show()
+                } else {
+                    $("#controlsUi").hide()
+                }
+            }
+            const setUiDisplay = (show = true) => {
+                if(show) {
+                    $("#elevatorUi").show()
+                } else {
+                    $("#elevatorUi").hide()
+                }
+            }
+            const setCallDisplay = (show = true) => {
+                if(show) {
+                    $("#callUi").show()
+                } else {
+                    $("#callUi").hide()
+                }
+            }
+            const setCurrentFloor = (number) => {
+                $("#currentFloor").html(number);
+            }
+            const setMaxFloor = (number) => {
+                maxFloor = number;
+            }
+            const setCurrentStation = (station) => {
+                currentStation = station;
+            }
+            const callElevator = () => {
+                if(!currentStation) return;
+                sendToClient("callElevator", {"currentStation": currentStation});
+            };
+
+            $("#callElevator").click(() => {
+                callElevator();
+                return;
+            })
+            const selectFloor = (floor) => {
+                if(!floor) return;
+                console.log("FLOOR: "+floor)
+                return;
+            };
+            console.log("UI: elevator document loaded")
+        })
+    </script>
+</body>
+</html>
