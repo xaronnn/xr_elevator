@@ -1,5 +1,2 @@
-# Elevator (Script under heavily development.)
+# XR Elevator (discontinued)
 Synced custom elevator script for FiveM.
-
-
-# Be respect for my labour.
